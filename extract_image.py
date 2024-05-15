@@ -2,26 +2,17 @@ import datetime
 import calendar
 import os
 import numpy as np
-from sentinelhub import (
-    SHConfig, 
-    SentinelHubCatalog, 
-    SentinelHubDownloadClient,
-    CRS,
-    BBox,
-    DataCollection,
-    DownloadRequest,
-    MimeType,
-    MosaickingOrder,
-    SentinelHubDownloadClient,
-    SentinelHubRequest,
-    bbox_to_dimensions,
-    bbox_to_resolution,
-    filter_times,
-)
 from config import CONFIG, PROJECT_CRS, IMAGE_RESOLUTION, OUTPUT_DIRECTORY
 from evalscript import EVALSCRIPT_TRUE_COLOR
 from locations import LOCATION
 from catalog_dates import get_available_dates
+from sentinelhub import (
+    BBox,
+    DataCollection,
+    MimeType,
+    SentinelHubRequest,
+    bbox_to_dimensions,
+)
 
 def extract_image():
     aoi_coords = get_coords()
