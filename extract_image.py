@@ -1,7 +1,5 @@
 import datetime
 import calendar
-import os
-import numpy as np
 from config import CONFIG, PROJECT_CRS, IMAGE_RESOLUTION, OUTPUT_DIRECTORY
 from evalscript import EVALSCRIPT_TRUE_COLOR
 from locations import LOCATION
