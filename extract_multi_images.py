@@ -1,10 +1,18 @@
 import datetime
 import dateutil
 import calendar
-from config import CONFIG, PROJECT_CRS, IMAGE_RESOLUTION, OUTPUT_DIRECTORY, RANGE, DOWNLOAD_CLIENT
 from evalscript import EVALSCRIPT_TRUE_COLOR
 from locations import LOCATION
 from catalog_dates import search_catalog
+from config import (
+    CONFIG, 
+    PROJECT_CRS, 
+    PROJECT_SATELLITE, 
+    IMAGE_RESOLUTION, 
+    OUTPUT_DIRECTORY, 
+    RANGE, 
+    DOWNLOAD_CLIENT
+)
 from sentinelhub import (
     BBox,
     DataCollection,
@@ -38,7 +46,7 @@ def extract_multi_images():
             evalscript=EVALSCRIPT_TRUE_COLOR,
             input_data=[
                 SentinelHubRequest.input_data(
-                    data_collection=DataCollection.SENTINEL2_L2A,
+                    data_collection=PROJECT_SATELLITE,
                     time_interval=(timestamp - time_difference, timestamp + time_difference),
                 )
             ],

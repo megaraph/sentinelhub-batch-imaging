@@ -1,5 +1,5 @@
 import os
-from sentinelhub import SHConfig, CRS, SentinelHubDownloadClient
+from sentinelhub import SHConfig, CRS, SentinelHubDownloadClient, DataCollection
 
 CLIENT_ID = os.environ['CLIENT_ID']
 CLIENT_SECRET = os.environ['CLIENT_SECRET']
@@ -20,6 +20,9 @@ DOWNLOAD_CLIENT = SentinelHubDownloadClient(config=CONFIG)
 
 # Other options: https://sentinelhub-py.readthedocs.io/en/latest/reference/sentinelhub.constants.html#sentinelhub.constants.CRS
 PROJECT_CRS = CRS.POP_WEB
+
+# Other options: https://sentinelhub-py.readthedocs.io/en/latest/reference/sentinelhub.data_collections.html#sentinelhub.data_collections.DataCollectionDefinition.collection_type
+PROJECT_SATELLITE = DataCollection.SENTINEL2_L2A
 
 # Measured in meters
 IMAGE_RESOLUTION = 5
