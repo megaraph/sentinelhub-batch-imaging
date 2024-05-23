@@ -1,4 +1,5 @@
 import datetime
+import dateutil
 import calendar
 from config import CONFIG, PROJECT_CRS, IMAGE_RESOLUTION, OUTPUT_DIRECTORY, RANGE, DOWNLOAD_CLIENT
 from evalscript import EVALSCRIPT_TRUE_COLOR
@@ -79,10 +80,18 @@ def get_coords():
 def get_time_interval(aoi_bbox):
     damage_report_date = input("Enter damage report date [yyyy-mm-dd]: ")
     date_split = [int(el) for el in damage_report_date.split('-')]
-    t_year, t_month, t_day = date_split
 
-    date_from = str(datetime.date(t_year, t_month - RANGE, 1))
-    date_to = str(datetime.date(t_year, t_month + RANGE, calendar.monthrange(t_year, t_month)[1]))
+    t_year, t_month, t_day = date_split
+    month_diff = dateutil.relativedelta.relativedelta(months=RANGE)
+
+    target_date = datetime.date(t_year, t_month, t_day)
+
+    from_date = target_date - month_diff
+    to_date = target_date + month_diff
+
+
+    date_from = str(datetime.date(from_date.year, from_date.month, 1))
+    date_to = str(datetime.date(to_date.year, to_date.month, calendar.monthrange(t_year, to_date.month)[1]))
 
     time_interval = (date_from, date_to)
 
