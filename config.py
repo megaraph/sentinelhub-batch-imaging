@@ -30,5 +30,8 @@ IMAGE_RESOLUTION = 5
 # To store downloded images
 OUTPUT_DIRECTORY = "output"
 
+# Output file extension 
+OUT_EXT = ".tiff"
+
 # DAMAGE REPORT MONTH RANGE
 RANGE = 2

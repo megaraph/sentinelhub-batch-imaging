@@ -11,7 +11,8 @@ from config import (
     IMAGE_RESOLUTION, 
     OUTPUT_DIRECTORY, 
     RANGE, 
-    DOWNLOAD_CLIENT
+    DOWNLOAD_CLIENT,
+    OUT_EXT
 )
 from sentinelhub import (
     BBox,
@@ -23,7 +24,7 @@ from sentinelhub import (
 )
 
 def extract_multi_images():
-    aoi_coords = get_coords()
+    loc_name, aoi_coords = get_coords()
 
     aoi_bbox = BBox(bbox=aoi_coords, crs=PROJECT_CRS)
     aoi_size = bbox_to_dimensions(aoi_bbox, resolution=IMAGE_RESOLUTION)
@@ -67,7 +68,8 @@ def extract_multi_images():
         input_data = request.post_values['input']['data'][0]
         data_time_range = input_data['dataFilter']['timeRange']
         data_date = data_time_range['from'].split('T')[0]
-        request.filename = f"{data_date}.tiff"
+        out_filename = f"{loc_name.capitalize()}_{data_date}{OUT_EXT}"
+        request.filename = out_filename
 
     data = DOWNLOAD_CLIENT.download(download_requests, show_progress=True)
     print(f"\n{data[0].shape}\n")
@@ -82,7 +84,7 @@ def get_coords():
         print("\nWARNING: LOCATION NOT AVAILABLE\n")
         exit()
 
-    return LOCATION[loc]
+    return loc, LOCATION[loc]
 
 
 def get_time_interval(aoi_bbox):
