@@ -1,11 +1,11 @@
 from sentinelhub import SentinelHubCatalog, DataCollection
-from config import CONFIG
+from config import CONFIG, PROJECT_SATELLITE
 
 catalog = SentinelHubCatalog(config=CONFIG)
 
 def search_catalog(time_interval, aoi_bbox):
     search_iterator  = catalog.search(
-        DataCollection.SENTINEL2_L2A,
+        collection=PROJECT_SATELLITE,
         bbox=aoi_bbox,
         time=time_interval,
         fields={"include": ["id", "properties.datetime",], "exclude": []},
