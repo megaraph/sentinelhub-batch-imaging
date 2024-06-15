@@ -99,4 +99,4 @@ def update_filename(loc_name, request, ext=OUT_EXT):
     data_time_range = input_data["dataFilter"]["timeRange"]
     data_date = data_time_range["from"].split("T")[0]
 
-    return f"{loc_name.capitalize()}_{data_date}{OUT_EXT}"
+    return f"{loc_name.capitalize()}/{loc_name.capitalize()}_{data_date}{OUT_EXT}"
